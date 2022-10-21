@@ -19,11 +19,11 @@ function Header() {
         />
       </div>
 
-      <div className="flex items-center md:border rounded-full hover:shadow-lg transition duration-200 md:border-gray-300 py-2 md:shadow">
+      <div className="flex items-center md:border rounded-full md:hover:shadow-lg transition duration-200 md:border-gray-300 py-2 md:shadow">
         <input
           type="text"
           placeholder="Comece sua pesquisa"
-          className="pl-5 bg-transparent outline-none flex-grow text-sm text-gray-600 placeholder-gray-400"
+          className="hidden md:inline-flex pl-5 bg-transparent outline-none flex-grow text-sm text-gray-600 md:placeholder-gray-400"
         />
         <SearchIcon className="hidden md:inline-flex h-8 bg-red-500 text-white rounded-full p-2 cursor-pointer md:mx-2" />
       </div>
