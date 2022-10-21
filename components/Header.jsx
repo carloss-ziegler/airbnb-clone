@@ -23,7 +23,7 @@ function Header() {
         <input
           type="text"
           placeholder="Comece sua pesquisa"
-          className="hidden md:inline-flex pl-5 bg-transparent outline-none flex-grow text-sm text-gray-600 md:placeholder-gray-400"
+          className="hidden md:inline-flex pl-5 bg-transparent outline-none flex-grow text-sm text-gray-600 sm:placeholder-transparent md:placeholder-gray-400"
         />
         <SearchIcon className="hidden md:inline-flex h-8 bg-red-500 text-white rounded-full p-2 cursor-pointer md:mx-2" />
       </div>
