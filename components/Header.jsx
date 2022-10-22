@@ -6,8 +6,32 @@ import {
   UserCircleIcon,
   UsersIcon,
 } from "@heroicons/react/solid";
+import { useState } from "react";
+import "react-date-range/dist/styles.css";
+import "react-date-range/dist/theme/default.css";
+import { DateRangePicker } from "react-date-range";
 
 function Header() {
+  const [input, setInput] = useState("");
+  const [startDate, setStartDate] = useState(new Date());
+  const [endDate, setEndDate] = useState(new Date());
+  const [noOfGuests, setNoOfGuests] = useState(1);
+
+  const handleSelect = (ranges) => {
+    setStartDate(ranges.selection.startDate);
+    setEndDate(ranges.selection.endDate);
+  };
+
+  const selectionRange = {
+    startDate: startDate,
+    endDate: endDate,
+    key: "selection",
+  };
+
+  const resetInput = () => {
+    setInput("");
+  };
+
   return (
     <header className="sticky top-0 z-50 grid grid-cols-3 bg-white shadow-md px-5 py-4 md:px-10">
       <div className="relative flex items-center h-8 cursor-pointer my-auto">
@@ -21,6 +45,8 @@ function Header() {
 
       <div className="flex items-center md:border rounded-full md:hover:shadow-lg transition duration-200 md:border-gray-300 py-2 md:shadow">
         <input
+          onChange={(e) => setInput(e.target.value)}
+          value={input}
           type="text"
           placeholder="Comece sua pesquisa"
           className="hidden md:inline-flex pl-5 bg-transparent outline-none flex-grow text-sm text-gray-600 sm:placeholder-transparent md:placeholder-gray-400"
@@ -43,6 +69,37 @@ function Header() {
           <UserCircleIcon className="h-9 text-gray-600" />
         </div>
       </div>
+
+      {input && (
+        <div className="flex flex-col col-span-3 mx-auto mt-5">
+          <DateRangePicker
+            ranges={[selectionRange]}
+            minDate={new Date()}
+            rangeColors={["#FD5861"]}
+            onChange={handleSelect}
+          />
+          <div className="flex items-center border-b mb-4">
+            <h2 className="text-2xl flex-grow font-semibold">
+              Number of Guests
+            </h2>
+
+            <UsersIcon className="h-5" />
+            <input
+              min={1}
+              value={noOfGuests}
+              onChange={(e) => setNoOfGuests(e.target.value)}
+              className="w-12 pl-2 text-lg outline-none text-red-400"
+              type="number"
+            />
+          </div>
+          <div className="flex">
+            <button onClick={resetInput} className="flex-grow text-gray-500">
+              Cancelar
+            </button>
+            <button className="flex-grow text-red-400">Buscar</button>
+          </div>
+        </div>
+      )}
     </header>
   );
 }
