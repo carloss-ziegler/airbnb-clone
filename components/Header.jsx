@@ -85,6 +85,7 @@ function Header() {
 
             <UsersIcon className="h-5" />
             <input
+              disabled={noOfGuests < 1}
               min={1}
               value={noOfGuests}
               onChange={(e) => setNoOfGuests(e.target.value)}
